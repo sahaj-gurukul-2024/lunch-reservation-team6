@@ -2,6 +2,8 @@ package gkl.exercise
 
 import gkl.exercise.models.Employee
 import gkl.exercise.services.LoginServices
+import io.micronaut.http.HttpRequest
+import io.micronaut.http.HttpResponse
 import io.micronaut.http.HttpStatus
 import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.Body
@@ -15,11 +17,8 @@ import jakarta.inject.Inject
 class LoginController(@Inject private val loginServices: LoginServices) {
 
     @Post(consumes = [MediaType.APPLICATION_JSON])
-    fun validateUser(@Body employee: Employee): HttpStatus{
-
-        if (loginServices.isPresent(employee)) return HttpStatus.OK
-
-        return HttpStatus.NOT_FOUND
+    fun validateUser(@Body employee: Employee): HttpResponse<Employee>{
+        return HttpResponse.ok()
     }
 
 }
