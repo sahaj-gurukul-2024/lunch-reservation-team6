@@ -14,10 +14,12 @@ import jakarta.inject.Inject
 
 @Controller("/api/login")
 
-class LoginController(@Inject private val loginServices: LoginServices) {
+class LoginController( @Inject val loginServices: LoginServices) {
 
     @Post(consumes = [MediaType.APPLICATION_JSON])
     fun validateUser(@Body employee: Employee): HttpResponse<Employee>{
+
+        loginServices.addUser(employee)
         return HttpResponse.ok()
     }
 
