@@ -1,4 +1,4 @@
-package gkl.exercise
+package gkl.exercise.controller
 
 import gkl.exercise.models.Employee
 import gkl.exercise.services.LoginServices
@@ -19,8 +19,10 @@ class LoginController( @Inject val loginServices: LoginServices) {
     @Post(consumes = [MediaType.APPLICATION_JSON])
     fun validateUser(@Body employee: Employee): HttpResponse<Employee>{
 
-        loginServices.addUser(employee)
+        if(loginServices.addEmployee(employee))
         return HttpResponse.ok()
+
+        return HttpResponse.status(500,"Internal server error data not saved")
     }
 
 }

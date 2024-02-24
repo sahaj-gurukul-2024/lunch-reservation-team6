@@ -1,12 +1,11 @@
 package gkl.exercise.repository
 
-import gkl.exercise.models.Employee
+import gkl.exercise.entities.EmployeeEntity
 import io.micronaut.data.annotation.Repository
-import io.micronaut.data.jdbc.annotation.JdbcRepository
-import io.micronaut.data.model.query.builder.sql.Dialect
+
 import io.micronaut.data.repository.CrudRepository
 
-@JdbcRepository(dialect = Dialect.POSTGRES)
-interface EmployeeRepository : CrudRepository<Employee, Long>{
+@Repository
+interface EmployeeRepository : CrudRepository<EmployeeEntity, Long>{
 
 }

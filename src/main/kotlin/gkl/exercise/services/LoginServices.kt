@@ -1,25 +1,31 @@
 package gkl.exercise.services
 
+import gkl.exercise.entities.EmployeeEntity
 import gkl.exercise.models.Employee
 import gkl.exercise.repository.EmployeeRepository
+import jakarta.inject.Inject
 import jakarta.inject.Singleton
 
 @Singleton
-class LoginServices (private val employeeRepository: EmployeeRepository){
-    private val employeeList = mutableMapOf<Long,Employee>()
+class LoginServices (@Inject private val employeeRepository: EmployeeRepository){
 
-    init {
-        val list = employeeRepository.findAll()
-        list.forEach { it->
-            employeeList[it.id] = it
+
+    fun addEmployee(employee: Employee) : Boolean{
+
+        try {
+            val emp : EmployeeEntity = employeeRepository.findById(employee.id).get()
+            emp.name=employee.name
+            employeeRepository.update(emp)
+            return true
         }
-    }
-    fun addUser(employee: Employee){
-        employeeList.containsKey(employee.id)
-        employeeList[employee.id] = employee
-        employeeRepository.updateAll(employeeList.values)
-        println(employeeList)
-        println(employeeRepository.findAll())
+        catch(err : NoSuchElementException){
+            employeeRepository.save(EmployeeEntity(employee.id,employee.name))
+            return true
+        }
+        catch(err : Exception){
+            println(err)
+            return false
+        }
     }
 
 }

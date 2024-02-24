@@ -1,11 +1,11 @@
 package gkl.exercise
+import gkl.exercise.controller.LoginController
 import io.micronaut.http.HttpRequest
 import io.micronaut.http.client.HttpClient
 import io.micronaut.http.client.annotation.Client
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import gkl.exercise.models.Employee
 import gkl.exercise.services.LoginServices
-import io.micronaut.http.HttpStatus
 import io.micronaut.serde.ObjectMapper
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test

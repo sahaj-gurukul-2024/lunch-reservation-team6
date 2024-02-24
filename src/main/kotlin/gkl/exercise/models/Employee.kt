@@ -5,7 +5,7 @@ import io.micronaut.data.annotation.MappedEntity
 import io.micronaut.serde.annotation.Serdeable
 
 
-@MappedEntity
+
 @Serdeable
 data class Employee (
 

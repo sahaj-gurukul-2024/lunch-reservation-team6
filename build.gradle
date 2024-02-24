@@ -27,9 +27,15 @@ dependencies {
     testImplementation("io.micronaut:micronaut-http-client")
     annotationProcessor("io.micronaut.data:micronaut-data-processor")
 
-    implementation("io.micronaut.data:micronaut-data-jdbc")
+    implementation("io.micronaut.sql:micronaut-hibernate-jpa")
+    implementation("io.micronaut.data:micronaut-data-tx-hibernate")
+    implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
+    implementation('org.postgresql:postgresql:42.5.4')
+
     implementation("io.micronaut.flyway:micronaut-flyway")
+
+
     runtimeOnly("org.flywaydb:flyway-database-postgresql")
     runtimeOnly("org.postgresql:postgresql")
 
