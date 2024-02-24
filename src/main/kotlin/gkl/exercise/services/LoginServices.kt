@@ -18,7 +18,8 @@ class LoginServices(private val employeeRepository: EmployeeRepository) {
     }
 
     fun addUser(employee: Employee) {
-        employeeList.containsKey(employee.id)
+        if(employeeList.containsKey(employee.id))
+            employeeRepository.deleteById(employee.id)
         employeeList[employee.id] = employee
         employeeRepository.save(employee)
         println(employeeList)
