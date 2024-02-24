@@ -25,6 +25,7 @@ dependencies {
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
     testImplementation("io.micronaut:micronaut-http-client")
+    testImplementation "io.mockk:mockk:1.9.3"
     annotationProcessor("io.micronaut.data:micronaut-data-processor")
 
     implementation("io.micronaut.data:micronaut-data-jdbc")
