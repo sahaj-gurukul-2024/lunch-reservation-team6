@@ -17,7 +17,7 @@ class ReservationService(private val reservationRepository: ReservationRepositor
 
     fun addReservation(reservation: Reservation) {
         reservationList[Pair(reservation.id, reservation.reserve)] = reservation
-        reservationRepository.updateAll(reservationList.values)
+        reservationRepository.save(reservation)
         println("List: $reservationList")
     }
 }

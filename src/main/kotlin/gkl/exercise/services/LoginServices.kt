@@ -20,7 +20,7 @@ class LoginServices(private val employeeRepository: EmployeeRepository) {
     fun addUser(employee: Employee) {
         employeeList.containsKey(employee.id)
         employeeList[employee.id] = employee
-        employeeRepository.updateAll(employeeList.values)
+        employeeRepository.save(employee)
         println(employeeList)
         println(employeeRepository.findAll())
     }
