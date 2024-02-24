@@ -22,7 +22,5 @@ class LoginServices(private val employeeRepository: EmployeeRepository) {
             employeeRepository.deleteById(employee.id)
         employeeList[employee.id] = employee
         employeeRepository.save(employee)
-        println(employeeList)
-        println(employeeRepository.findAll())
     }
 }

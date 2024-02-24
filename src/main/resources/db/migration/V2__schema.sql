@@ -1,0 +1,1 @@
+ALTER TABLE Reservation ALTER COLUMN reserve TYPE VARCHAR(255);

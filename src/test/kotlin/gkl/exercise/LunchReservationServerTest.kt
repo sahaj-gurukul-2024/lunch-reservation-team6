@@ -1,4 +1,5 @@
 package gkl.exercise
+
 import io.micronaut.http.HttpRequest
 import io.micronaut.http.client.HttpClient
 import io.micronaut.http.client.annotation.Client
@@ -17,21 +18,19 @@ class LunchReservationServerTest(@Client("/") val client: HttpClient, val object
 
     @Inject
     lateinit var loginController: LoginController
+
     @Inject
     lateinit var loginServices: LoginServices
+
     @Test
     fun testHello() {
         val request: HttpRequest<Any> = HttpRequest.GET("/hello")
         val body = client.toBlocking().retrieve(request)
-
-
-
-//        assertNotNull(body)
         assertEquals("Hello World", body)
     }
 
     @Test
-    fun `Should Give 200 when employee gives correct details`(){
+    fun `Should Give 200 when employee gives correct details`() {
 
         val employee = Employee(id = 1, name = "Vaibhav")
         val httpResponse = loginController.validateUser(employee)
