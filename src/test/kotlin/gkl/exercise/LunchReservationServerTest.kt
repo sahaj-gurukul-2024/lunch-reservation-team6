@@ -8,6 +8,7 @@ import gkl.exercise.models.Employee
 import gkl.exercise.models.PrimaryComposite
 import gkl.exercise.models.Reservation
 import gkl.exercise.repository.EmployeeRepository
+import gkl.exercise.repository.ReservationRepository
 import gkl.exercise.services.LoginServices
 import io.micronaut.http.HttpStatus
 import io.micronaut.serde.ObjectMapper
@@ -15,6 +16,7 @@ import io.mockk.mockk
 import jakarta.inject.Inject
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import kotlin.math.E
 
 @MicronautTest
 class LunchReservationServerTest(@Client("/") val client: HttpClient, val objectMapper: ObjectMapper) {
@@ -30,6 +32,9 @@ class LunchReservationServerTest(@Client("/") val client: HttpClient, val object
 
     @Inject
     lateinit var employeeRepository: EmployeeRepository
+
+    @Inject
+    lateinit var reservationRepository: ReservationRepository
 
     @Test
     fun testHello() {
@@ -69,6 +74,18 @@ class LunchReservationServerTest(@Client("/") val client: HttpClient, val object
         val reservation = Reservation(PrimaryComposite(101, "22-02-2024"),"Madhvesh", true)
         httpResponse = reservationController.reserveUser(reservation)
         assertEquals(200, httpResponse.status.code)
+    }
+
+    @Test
+    fun `Should be able to override the status for a given employee id and date`() {
+        val employee = Employee(id = 102, name = "Sanjeev")
+        var httpResponse = loginController.validateUser(employee)
+        val reservation1 = Reservation(PrimaryComposite(102, "22-02-2024"),"Sanjeev", true)
+        httpResponse = reservationController.reserveUser(reservation1)
+        val reservation2 = Reservation(PrimaryComposite(102, "22-02-2024"),"Sanjeev", false)
+        httpResponse = reservationController.reserveUser(reservation2)
+        val primaryKey = PrimaryComposite(102, "22-02-2024")
+        assertEquals(false, reservationRepository.findById(primaryKey).get().status)
     }
 
 }
