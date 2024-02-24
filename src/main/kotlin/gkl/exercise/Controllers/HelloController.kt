@@ -1,4 +1,4 @@
-package gkl.exercise
+package gkl.exercise.Controllers
 
 import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.Controller

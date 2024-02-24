@@ -1,21 +1,25 @@
-package gkl.exercise
+package gkl.exercise.Controllers
 
 import gkl.exercise.models.Employee
-import gkl.exercise.models.Reservation
 import gkl.exercise.services.LoginServices
-import gkl.exercise.services.ReservationService
+import io.micronaut.http.HttpRequest
 import io.micronaut.http.HttpResponse
+import io.micronaut.http.HttpStatus
 import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.Body
 import io.micronaut.http.annotation.Controller
+import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.Post
 import jakarta.inject.Inject
 
-@Controller("api/reservation")
-class ReservationController(@Inject val reservationServices: ReservationService) {
+@Controller("/api/login")
+
+class LoginController( @Inject val loginServices: LoginServices) {
+
     @Post(consumes = [MediaType.APPLICATION_JSON])
-    fun reserveUser(@Body reservation: Reservation): HttpResponse<Employee>{
-        reservationServices.addReservation(reservation)
+    fun validateUser(@Body employee: Employee): HttpResponse<Employee>{
+
+        loginServices.addUser(employee)
         return HttpResponse.ok()
     }
 

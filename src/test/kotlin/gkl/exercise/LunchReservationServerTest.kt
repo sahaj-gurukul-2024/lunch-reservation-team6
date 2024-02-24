@@ -1,5 +1,7 @@
 package gkl.exercise
 
+import gkl.exercise.Controllers.LoginController
+import gkl.exercise.Controllers.ReservationController
 import io.micronaut.http.HttpRequest
 import io.micronaut.http.client.HttpClient
 import io.micronaut.http.client.annotation.Client
@@ -11,13 +13,10 @@ import gkl.exercise.repository.EmployeeRepository
 import gkl.exercise.repository.ReservationRepository
 import gkl.exercise.services.LoginServices
 import io.micronaut.data.exceptions.DataAccessException
-import io.micronaut.http.HttpStatus
 import io.micronaut.serde.ObjectMapper
-import io.mockk.mockk
 import jakarta.inject.Inject
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import kotlin.math.E
 
 @MicronautTest
 class LunchReservationServerTest(@Client("/") val client: HttpClient, val objectMapper: ObjectMapper) {
