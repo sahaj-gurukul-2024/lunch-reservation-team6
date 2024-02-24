@@ -10,6 +10,7 @@ import gkl.exercise.models.Reservation
 import gkl.exercise.repository.EmployeeRepository
 import gkl.exercise.repository.ReservationRepository
 import gkl.exercise.services.LoginServices
+import io.micronaut.data.exceptions.DataAccessException
 import io.micronaut.http.HttpStatus
 import io.micronaut.serde.ObjectMapper
 import io.mockk.mockk
@@ -86,6 +87,17 @@ class LunchReservationServerTest(@Client("/") val client: HttpClient, val object
         httpResponse = reservationController.reserveUser(reservation2)
         val primaryKey = PrimaryComposite(102, "22-02-2024")
         assertEquals(false, reservationRepository.findById(primaryKey).get().status)
+    }
+
+    @Test
+    fun `Should throw error when registering reservation for non existing employee`() {
+        try {
+            val reservation = Reservation(PrimaryComposite(890, "22-02-2024"),"Sanjeev", true)
+            val httpResponse = reservationController.reserveUser(reservation)
+        }catch(e: DataAccessException){
+            println("No such employee")
+            assert(true)
+        }
     }
 
 }
