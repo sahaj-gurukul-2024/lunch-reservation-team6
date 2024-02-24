@@ -3,6 +3,7 @@ package gkl.exercise.services
 import gkl.exercise.models.Employee
 import gkl.exercise.models.Reservation
 import gkl.exercise.repository.EmployeeRepository
+import gkl.exercise.repository.ReservationRepository
 import jakarta.inject.Singleton
 
 @Singleton
@@ -23,9 +24,4 @@ class LoginServices(private val employeeRepository: EmployeeRepository) {
         println(employeeList)
         println(employeeRepository.findAll())
     }
-
-    fun addReservation(reservation: Reservation) {
-
-    }
-
 }
