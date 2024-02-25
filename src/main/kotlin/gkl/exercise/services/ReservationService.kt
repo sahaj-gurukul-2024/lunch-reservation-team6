@@ -9,6 +9,11 @@ import java.util.*
 class ReservationService(private val reservationRepository: ReservationRepository) {
 
     fun reserveDate(id: Long, date: Date) {
+        for(reservation in reservationRepository.findAllByDate(date))
+        {
+            if(reservation.id == id)
+                return
+        }
         reservationRepository.save(ReservationEntity(id, date))
     }
 

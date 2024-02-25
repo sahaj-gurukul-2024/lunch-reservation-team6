@@ -22,4 +22,8 @@ class AdminServices(private val reservationRepository: ReservationRepository) {
         }
         return dateToCount
     }
+
+    fun displayDateCount(date: gkl.exercise.models.Date): Long {
+        return reservationRepository.countByDate(date.date)
+    }
 }

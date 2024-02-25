@@ -1,5 +1,4 @@
 package gkl.exercise.controller
-
 import gkl.exercise.models.Dates
 import gkl.exercise.services.AdminServices
 import io.micronaut.http.annotation.Body
@@ -14,6 +13,12 @@ class AdminController(private val adminService: AdminServices){
     fun showWeek(@Body Dates: Dates): MutableMap<Date, Long> {
         val dateToCount = adminService.displayWeek(Dates)
         return dateToCount
+    }
+
+    @Post("/date")
+    fun showDate(@Body date: gkl.exercise.models.Date): Long {
+        val dateCount = adminService.displayDateCount(date)
+        return dateCount
     }
 
 }
