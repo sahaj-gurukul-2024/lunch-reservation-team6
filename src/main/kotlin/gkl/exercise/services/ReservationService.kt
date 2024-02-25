@@ -32,4 +32,8 @@ class ReservationService(private val reservationRepository: ReservationRepositor
         }
 
     }
+
+    fun isReserved(id : Long,date : Date) : Boolean{
+        return reservationRepository.findByEmpidAndDate(id,date)!=null
+    }
 }

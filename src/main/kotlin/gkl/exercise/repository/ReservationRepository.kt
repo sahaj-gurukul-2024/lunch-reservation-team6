@@ -16,4 +16,6 @@ interface ReservationRepository : CrudRepository<ReservationEntity,Long>{
 
     fun findByDate(date: Date): List<ReservationEntity>
 
+    fun findByEmpidAndDate(empId : Long,date : Date) : ReservationEntity?
+
 }
