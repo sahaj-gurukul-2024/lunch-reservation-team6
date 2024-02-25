@@ -22,7 +22,7 @@ class ReservationController(private val reservationService: ReservationService){
         }
     }
 
-    @Delete("/unreserve")
+    @Post("/unreserve")
     fun unReserveDate(@Body reservation: Reservation) : HttpResponse<String>{
 
         try {
