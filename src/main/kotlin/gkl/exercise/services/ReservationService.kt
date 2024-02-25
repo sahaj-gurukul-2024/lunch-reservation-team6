@@ -1,20 +1,23 @@
 package gkl.exercise.services
 
 import gkl.exercise.entities.ReservationEntity
+import gkl.exercise.repository.EmployeeRepository
 import gkl.exercise.repository.ReservationRepository
 import jakarta.inject.Singleton
 import java.util.*
 
 @Singleton
-class ReservationService(private val reservationRepository: ReservationRepository) {
+class ReservationService(private val reservationRepository: ReservationRepository, private val employeeRepository: EmployeeRepository) {
 
     fun reserveDate(id: Long, date: Date) {
         for(reservation in reservationRepository.findAllByDate(date))
         {
-            if(reservation.id == id)
+            if(reservation.empid == id)
                 return
         }
-        reservationRepository.save(ReservationEntity(id, date))
+        if(employeeRepository.findById(id) != null)
+            employeeRepository.findById(id).get().id
+            reservationRepository.save(ReservationEntity(id, date))
     }
 
     fun unReserveDate(id: Long, date: Date): Boolean {

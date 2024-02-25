@@ -10,8 +10,6 @@ interface ReservationRepository : CrudRepository<ReservationEntity,Long>{
 
     fun findByEmpid(id : Long) : ReservationEntity?
 
-    fun findAllByEmpid(id: Long): List<ReservationEntity>
-
     fun countByDate(date: Date): Long
 
     fun findAllByDate(date: Date): List<ReservationEntity>
