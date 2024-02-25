@@ -7,7 +7,7 @@ import io.micronaut.http.annotation.Post
 import io.micronaut.http.HttpResponse
 import java.util.Date
 
-@Controller("/admin")
+@Controller("/api/admin")
 class AdminController(private val adminService: AdminServices){
     @Post("/week")
     fun showWeek(@Body Dates: Dates): MutableMap<Date, Long> {
