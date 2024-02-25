@@ -33,4 +33,16 @@ class ReservationController(private val reservationService: ReservationService){
             return HttpResponse.status(500,"Internal server error date not updated")
         }
     }
+
+    @Post("/is-reserved")
+    fun isReserved(@Body reservation: Reservation) : HttpResponse<Boolean>{
+
+        try{
+            return HttpResponse.ok(reservationService.isReserved(reservation.id,reservation.date))
+        }
+
+        catch (err : Exception){
+            return HttpResponse.status(500,"Internal server error")
+        }
+    }
 }
