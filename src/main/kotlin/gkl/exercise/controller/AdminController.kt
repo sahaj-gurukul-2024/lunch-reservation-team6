@@ -21,4 +21,15 @@ class AdminController(private val adminService: AdminServices){
         return dateCount
     }
 
+    
+    @Post
+    fun getOnDate(@Body date: Admin): HttpResponse<List<String>> {
+        return try {
+            HttpResponse.ok(adminService.getEmployeeOnDate(date.date))
+        } catch (err: Exception) {
+            HttpResponse.status(500,err.message)
+        }
+    }
+    
 }
+
