@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 @MicronautTest
-class LunchReservationServerTest(@Client("/") val client: HttpClient, val objectMapper: ObjectMapper) {
+class LunchReservationServerTestEntityController(@Client("/") val client: HttpClient, val objectMapper: ObjectMapper) {
 
     @Test
     fun testHello() {
