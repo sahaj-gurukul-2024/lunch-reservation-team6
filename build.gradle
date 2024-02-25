@@ -26,7 +26,7 @@ dependencies {
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
     testImplementation("io.micronaut:micronaut-http-client")
     annotationProcessor("io.micronaut.data:micronaut-data-processor")
-    testImplementation("io.micronaut.test:micronaut-test-rest-assured")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
 
     implementation("io.micronaut.sql:micronaut-hibernate-jpa")
     implementation("io.micronaut.data:micronaut-data-tx-hibernate")
@@ -35,6 +35,8 @@ dependencies {
     implementation('org.postgresql:postgresql:42.5.4')
 
     implementation("io.micronaut.flyway:micronaut-flyway")
+//    testImplementation("io.micronaut:inject-java")
+    testAnnotationProcessor("io.micronaut:inject-java")
 
 
     runtimeOnly("org.flywaydb:flyway-database-postgresql")

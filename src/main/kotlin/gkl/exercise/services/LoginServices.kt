@@ -14,15 +14,20 @@ class LoginServices (@Inject private val employeeRepository: EmployeeRepository)
 
         try {
             val emp : EmployeeEntity = employeeRepository.findById(employee.id).get()
+            employeeRepository.save(emp)
             emp.name=employee.name
             employeeRepository.update(emp)
             return true
         }
         catch(err : NoSuchElementException){
+            println(err)
+            println("NO SUCH ELEMENT EXVCEPT")
             employeeRepository.save(EmployeeEntity(employee.id,employee.name))
             return true
         }
         catch(err : Exception){
+//            println(err.message)
+            println("HEY I AM EXCEP")
             println(err)
             return false
         }
