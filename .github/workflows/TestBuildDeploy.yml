@@ -24,7 +24,7 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
       - name: build
-        run : ./gradlew build
+        run : ./gradlew build --scan
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
